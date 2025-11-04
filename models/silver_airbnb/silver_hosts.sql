@@ -1,0 +1,3 @@
+
+
+select * from DEV.BRONZE_AIRBNB.SRC_HOSTS
