@@ -8,9 +8,15 @@ profile: 'dbt_training_nov_2025'
 
 model-paths: ["models"]
 
+clean-targets:
+  - "target"
 
 models:
   dbt_training_nov_2025:
     silver_airbnb:
       +schema: 'silver_airbnb'
+      +materialized: view
+    gold_airbnb:
+      +schema: 'gold_airbnb'
       +materialized: table
+    
