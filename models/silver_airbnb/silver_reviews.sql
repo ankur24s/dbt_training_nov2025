@@ -5,4 +5,4 @@ reviewer_name,
 comments AS review_text,
 sentiment AS review_sentiment
 FROM
-DEV.BRONZE_AIRBNB.src_reviews
+{{source('airbnb','reviews')}}

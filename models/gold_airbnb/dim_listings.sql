@@ -1,4 +1,4 @@
-{{config(materialized='ephemeral')}}
+
 SELECT 
   listing_id,
   listing_name,
