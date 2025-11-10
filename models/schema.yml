@@ -48,6 +48,5 @@ models:
                       'Vila',
                       'Hotel room',
                       'Entire home/apt',
-                      'Entire Home',
-                      'Private room 123'
+                      'Entire Home'
                       ]

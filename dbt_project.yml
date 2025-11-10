@@ -25,3 +25,5 @@ models:
       +schema: 'platinum_airbnb'
       +materialized: view
     
+data_tests:
+  +store_failures: true

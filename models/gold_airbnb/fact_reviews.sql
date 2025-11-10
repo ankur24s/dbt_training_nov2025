@@ -6,11 +6,17 @@
     incremental_strategy = 'merge',
     incremental_predicates = [
       "DBT_INTERNAL_DEST.REVIEW_DATE > dateadd(day, -30, '2021-10-28')"
-    ]
+    ],
+    on_schema_change = 'fail'
   )
 }}
 
-select * from  {{ref('silver_reviews')}}
+select 
+{{
+  generate_hash_key_args(['listing_id','review_date', 'reviewer_name', 'review_text','review_sentiment'])
+}} as review_id,
+* 
+from  {{ref('silver_reviews')}}
 {% if is_incremental() %}
 where review_date > (select max(review_date) from {{this}})
 {% endif %}
