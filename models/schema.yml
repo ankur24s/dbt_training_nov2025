@@ -2,8 +2,10 @@ version: 1
 
 models:
   - name: dim_listings
+    description: Table which contains Airbnb listings in Berlin
     columns:
       - name: listing_id
+        description: Primary Key for dim_listings
         tests:
           - not_null
           - unique:
@@ -12,6 +14,7 @@ models:
                 error_if: ">=5"
                 warn_if:  ">=2"
       - name: price
+        description: price to book that listing
         tests:
           - positive_value
       - name: listing_name
@@ -19,8 +22,10 @@ models:
           - string_not_empty
   
   - name: dim_hosts
+    description: contains all hosts having airbnb propoerty in Berlin
     columns:
       - name: host_id
+        description: The primary key of table.
         tests:
           - not_null
           - unique
@@ -29,14 +34,17 @@ models:
           - string_not_empty
 
   - name: dim_listing_w_hosts
+    description: this containts unique listings w hosts
     columns:
       - name: host_id
+        description: The host's id. References the dim_hosts
         tests:
           - relationships: 
               to: ref('dim_hosts')
               field: host_id
 
       - name: minimum_nights
+        description: '{{doc("dim_listing_minimum_nights")}}'
         tests:
           - positive_value
       

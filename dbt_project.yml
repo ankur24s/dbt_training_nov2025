@@ -9,6 +9,7 @@ profile: 'dbt_training_nov_2025'
 model-paths: ["models"]
 macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
+asset-paths: ["assets"]
 
 clean-targets:
   - "target"
