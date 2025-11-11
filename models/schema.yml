@@ -17,12 +17,23 @@ models:
         description: price to book that listing
         tests:
           - positive_value
+          - dbt_expectations.expect_column_quantile_values_to_be_between:
+              quantile: .95
+              min_value: 50
+              max_value: 200
+          - dbt_expectations.expect_column_max_to_be_between:
+              max_value: 8000
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: number
       - name: listing_name
         tests:
           - string_not_empty
   
   - name: dim_hosts
     description: contains all hosts having airbnb propoerty in Berlin
+    tests:
+      - dbt_expectations.expect_table_row_count_to_equal_other_table:
+              compare_model: source('airbnb','hosts')
     columns:
       - name: host_id
         description: The primary key of table.
@@ -58,3 +69,5 @@ models:
                       'Entire home/apt',
                       'Entire Home'
                       ]
+          - dbt_expectations.expect_column_distinct_count_to_equal:
+              value: 6

@@ -33,3 +33,6 @@ models:
     
 data_tests:
   +store_failures: true
+
+vars:
+  dbt_user_name: "Ankur from project.yml"
