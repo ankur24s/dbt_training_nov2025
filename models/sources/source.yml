@@ -12,8 +12,12 @@ sources:
           - name: price
             tests:
               - dbt_expectations.expect_column_values_to_match_regex:
+<<<<<<< HEAD
                   regex: "\\\\$[0-9][0-9\\\\.]+$"
 
+=======
+                  regex: "\\\\$[0-9]+\\\\.[0-9]+$"
+>>>>>>> 2a7f33b0f6afe3ee7a638b40120df1af2288e1c7
 
       - name: reviews
         identifier: src_reviews
