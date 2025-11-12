@@ -6,7 +6,7 @@ SELECT
     NVL( a.host_name, 'Anonymous') AS host_name,
     a.is_superhost,
     a.created_at,
-    a.updated_at --added comment from build
+    a.updated_at 
 FROM
     {{ ref('silver_hosts') }} a inner join  {{ ref('hosts_snapshot') }} b
     on a.host_id = b.host_id
