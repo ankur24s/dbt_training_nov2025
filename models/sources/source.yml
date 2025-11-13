@@ -5,19 +5,27 @@ sources:
     tables:
       - name: hosts
         identifier: src_hosts
+        loaded_at_field: updated_at
+        freshness:
+          warn_after: {count: 3, period: day}
+          error_after: {count: 10, period: day}
 
       - name: listings
         identifier: src_listings
+        loaded_at_field: updated_at
+        freshness:
+          warn_after: {count: 3, period: day}
+          error_after: {count: 10, period: day}
         columns:
           - name: price
             tests:
               - dbt_expectations.expect_column_values_to_match_regex:
-<<<<<<< HEAD
-                  regex: "\\\\$[0-9][0-9\\\\.]+$"
-
-=======
                   regex: "\\\\$[0-9]+\\\\.[0-9]+$"
->>>>>>> 2a7f33b0f6afe3ee7a638b40120df1af2288e1c7
 
       - name: reviews
         identifier: src_reviews
+        loaded_at_field: date
+        freshness:
+          warn_after: {count: 3, period: day}
+          error_after: {count: 10, period: day}
+        

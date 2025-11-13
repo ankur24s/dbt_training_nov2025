@@ -1,8 +1,9 @@
-{{
+{#
   config(
-    post_hook = "{{ auto_doc_cortex(this) }}"
+    post_hook = "{{ auto_doc_cortex(this) }}",
+    tags = 'sales'
   )
-}}
+#}
 
 SELECT 
   a.listing_id,
