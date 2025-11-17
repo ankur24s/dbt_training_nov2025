@@ -1,4 +1,3 @@
-
 name: 'dbt_training_nov_2025'
 version: '1.0.0'
 
@@ -13,26 +12,30 @@ asset-paths: ["assets"]
 
 clean-targets:
   - "target"
+  - "dbt_packages"
 
 on-run-start:
-  -  "CREATE TABLE IF NOT EXISTS {{ target.schema }}.audit_log ( model_name STRING, run_timestamp TIMESTAMP )"
+  - "CREATE TABLE IF NOT EXISTS {{ target.schema }}.audit_log ( model_name STRING, run_timestamp TIMESTAMP )"
 
 models:
   dbt_training_nov_2025:
     +post-hook:
-        - "INSERT INTO {{ target.schema }}.audit_log VALUES ('{{ this }}', CURRENT_TIMESTAMP)"
+      - "INSERT INTO {{ target.schema }}.audit_log VALUES ('{{ this }}', CURRENT_TIMESTAMP)"
     silver_airbnb:
       +schema: 'silver_airbnb'
       +materialized: view
     gold_airbnb:
       +schema: 'gold_airbnb'
       +materialized: table
+      +tags: 'gold'
     platinum_airbnb:
       +schema: 'platinum_airbnb'
       +materialized: view
-    
+
 data_tests:
   +store_failures: true
 
 vars:
   dbt_user_name: "Ankur from project.yml"
+flags:
+  require_generic_test_arguments_property: true
