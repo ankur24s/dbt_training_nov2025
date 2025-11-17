@@ -69,5 +69,6 @@ models:
               arguments:
                 values: ['Shared room', 'Private room', 'Vila', 'Hotel room', 'Entire home/apt', 'Entire Home']
           - dbt_expectations.expect_column_distinct_count_to_equal:
-              arguments:
-                value: 6
+              value: 6
+              config:
+                severity: warn

@@ -10,7 +10,7 @@ dbt_training_nov_2025:
       type: snowflake
       user: asahu
       warehouse: COMPUTE_WH
-    uat:
+    UAT:
       account: IBASILQ-ZG60882
       database: uat
       password: dbtPassword123
@@ -20,4 +20,18 @@ dbt_training_nov_2025:
       type: snowflake
       user: dbt
       warehouse: COMPUTE_WH
+<<<<<<< HEAD
   target: DEV
+=======
+    PROD:
+      account: IBASILQ-ZG60882
+      database: prod
+      password: dbtPassword123
+      role: TRANSFORM
+      schema: BRONZE_AIRBNB
+      threads: 1
+      type: snowflake
+      user: dbt
+      warehouse: COMPUTE_WH
+  target: "{{env_var('DBT_TARGET')}}"
+>>>>>>> b56f6b3b7ed95bf7008a223cd781f50b4c3dc076
