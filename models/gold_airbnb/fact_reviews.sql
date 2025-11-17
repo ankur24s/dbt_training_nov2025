@@ -7,7 +7,8 @@
     incremental_predicates = [
       "DBT_INTERNAL_DEST.REVIEW_DATE > dateadd(day, -30, '2021-10-28')"
     ],
-    on_schema_change = 'fail'
+    on_schema_change = 'fail',
+    tags = 'inventory'
   )
 }}
 

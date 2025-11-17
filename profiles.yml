@@ -1,6 +1,6 @@
 dbt_training_nov_2025:
   outputs:
-    dev:
+    DEV:
       account: IBASILQ-ZG60882
       database: DEV
       password: Ankur@12345678
@@ -20,4 +20,4 @@ dbt_training_nov_2025:
       type: snowflake
       user: dbt
       warehouse: COMPUTE_WH
-  target: dev
+  target: DEV

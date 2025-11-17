@@ -12,28 +12,32 @@ models:
               config:
                 severity: warn
                 error_if: ">=5"
-                warn_if:  ">=2"
+                warn_if: ">=2"
       - name: price
         description: price to book that listing
         tests:
           - positive_value
           - dbt_expectations.expect_column_quantile_values_to_be_between:
-              quantile: .95
-              min_value: 50
-              max_value: 200
+              arguments:
+                quantile: .95
+                min_value: 50
+                max_value: 200
           - dbt_expectations.expect_column_max_to_be_between:
-              max_value: 8000
+              arguments:
+                max_value: 8000
           - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: number
+              arguments:
+                column_type: number
       - name: listing_name
         tests:
           - string_not_empty
-  
+
   - name: dim_hosts
     description: contains all hosts having airbnb propoerty in Berlin
     tests:
       - dbt_expectations.expect_table_row_count_to_equal_other_table:
-              compare_model: source('airbnb','hosts')
+          arguments:
+            compare_model: source('airbnb','hosts')
     columns:
       - name: host_id
         description: The primary key of table.
@@ -50,24 +54,20 @@ models:
       - name: host_id
         description: The host's id. References the dim_hosts
         tests:
-          - relationships: 
-              to: ref('dim_hosts')
-              field: host_id
-
+          - relationships:
+              arguments:
+                to: ref('dim_hosts')
+                field: host_id
       - name: minimum_nights
         description: '{{doc("dim_listing_minimum_nights")}}'
         tests:
           - positive_value
-      
+
       - name: room_type
         tests:
           - accepted_values:
-              values: ['Shared room',
-                      'Private room',
-                      'Vila',
-                      'Hotel room',
-                      'Entire home/apt',
-                      'Entire Home'
-                      ]
+              arguments:
+                values: ['Shared room', 'Private room', 'Vila', 'Hotel room', 'Entire home/apt', 'Entire Home']
           - dbt_expectations.expect_column_distinct_count_to_equal:
-              value: 6
+              arguments:
+                value: 6
