@@ -5,16 +5,13 @@ sources:
     tables:
       - name: hosts
         identifier: src_hosts
-<<<<<<< HEAD
         config:
           loaded_at_field: updated_at
-=======
         loaded_at_field: updated_at
         freshness:
           warn_after: {count: 3, period: day}
           error_after: {count: 10, period: day}
 
->>>>>>> b56f6b3b7ed95bf7008a223cd781f50b4c3dc076
       - name: listings
         identifier: src_listings
         loaded_at_field: updated_at
@@ -25,30 +22,23 @@ sources:
           - name: price
             tests:
               - dbt_expectations.expect_column_values_to_match_regex:
-<<<<<<< HEAD
                   regex: "\\\\$[0-9][0-9\\\\.]+$"
 
       - name: reviews
         identifier: src_reviews
-=======
                   arguments:
                     regex: "\\\\$[0-9]+\\\\.[0-9]+$"
         config:
           loaded_at_field: updated_at
       - name: reviews
         identifier: src_reviews
-<<<<<<< HEAD
         config:
           loaded_at_field: date
     config:
       freshness:
         warn_after: {count: 3, period: day}
         error_after: {count: 10, period: day}
-=======
         loaded_at_field: date
         freshness:
           warn_after: {count: 3, period: day}
           error_after: {count: 10, period: day}
-        
->>>>>>> b56f6b3b7ed95bf7008a223cd781f50b4c3dc076
->>>>>>> main
